@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It'sAmor AI Advisor | Systemic Human Performance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fbfbfd; letter-spacing: -0.01em; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e5e7; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-[#1d1d1f] antialiased min-h-screen flex flex-col justify-between">
+
+    <header class="w-full max-w-5xl mx-auto px-6 py-6 flex justify-between items-center border-b border-[#e5e5e7]/50 backdrop-blur-md bg-[#fbfbfd]/80 sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <span class="text-lg font-semibold tracking-tight text-[#1d1d1f]">It'sAmor</span>
+            <span class="text-[9px] uppercase tracking-widest bg-[#1d1d1f] text-white px-2 py-0.5 rounded-full font-medium">Strategic Advisor</span>
+        </div>
+        <div class="text-xs text-[#86868b] font-normal" id="status-text">Secure Network Active</div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-6 max-w-5xl w-full mx-auto">
+        
+        <section id="welcome-screen" class="w-full max-w-2xl bg-white border border-[#e5e5e7] rounded-3xl p-8 md:p-14 shadow-sm transition-all duration-500 ease-in-out transform opacity-100 flex flex-col items-start text-left">
+            <div class="text-xs font-semibold uppercase tracking-widest text-[#86868b] mb-3">Hi Mandi 👋</div>
+            <h1 class="text-3xl md:text-4xl font-normal tracking-tight text-[#1d1d1f] mb-4 leading-tight">
+                Imagine having an AI advisor trained specifically on <span class="font-semibold">It'sAmor</span>.
+            </h1>
+            <p class="text-[#6e6e73] font-light leading-relaxed mb-6 text-base max-w-xl">
+                It analyzes your website, strategic positioning, B2B corporate training modules, and public success ecosystems to deeply understand how It'sAmor operates and scales commercial value.
+            </p>
+            <p class="text-[#6e6e73] font-light leading-relaxed mb-8 text-base max-w-xl">
+                Ask anything about growth vectors, organizational performance architecture, high-ticket customer acquisition, or digital product opportunities.
+            </p>
+            
+            <button id="start-chat-btn" class="w-full sm:w-auto bg-[#1d1d1f] text-white text-sm font-medium px-8 py-4 rounded-full hover:bg-[#333336] active:scale-98 transition-all duration-300 shadow-sm mb-10">
+                Explore It'sAmor AI Advisor →
+            </button>
+
+            <div class="w-full border-t border-[#e5e5e7]/80 pt-6">
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-[#86868b] mb-4">Suggested Explorations:</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                    <button class="suggested-prompt-btn text-left p-3.5 rounded-xl border border-[#e5e5e7] hover:border-[#1d1d1f] bg-[#fbfbfd] text-xs font-medium text-[#333336] transition-all duration-200">
+                        🟢 What growth opportunities might It'sAmor be overlooking?
+                    </button>
+                    <button class="suggested-prompt-btn text-left p-3.5 rounded-xl border border-[#e5e5e7] hover:border-[#1d1d1f] bg-[#fbfbfd] text-xs font-medium text-[#333336] transition-all duration-200">
+                        🟢 How could It'sAmor scale revenue utilizing the product ladder?
+                    </button>
+                    <button class="suggested-prompt-btn text-left p-3.5 rounded-xl border border-[#e5e5e7] hover:border-[#1d1d1f] bg-[#fbfbfd] text-xs font-medium text-[#333336] transition-all duration-200">
+                        🟢 What could slow corporate adoption or B2B expansion?
+                    </button>
+                    <button class="suggested-prompt-btn text-left p-3.5 rounded-xl border border-[#e5e5e7] hover:border-[#1d1d1f] bg-[#fbfbfd] text-xs font-medium text-[#333336] transition-all duration-200">
+                        🟢 Could It'sAmor increase high-ticket 1:1 acquisition?
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="chat-screen" class="hidden w-full h-[78vh] max-h-[750px] bg-white border border-[#e5e5e7] rounded-3xl shadow-sm overflow-hidden flex-col opacity-0 transition-all duration-500 ease-in-out">
+            <div class="px-6 py-4 border-b border-[#e5e5e7]/60 bg-[#f5f5f7]/30 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <div>
+                        <h2 class="text-sm font-semibold text-[#1d1d1f]">It'sAmor AI Model Active</h2>
+                        <p class="text-[11px] text-[#86868b] font-light">Analyzing corporate psychology & monetization metrics</p>
+                    </div>
+                </div>
+                <button id="reset-session" class="text-xs text-[#86868b] hover:text-[#1d1d1f] font-medium transition-colors">Reset Session</button>
+            </div>
+
+            <div id="chat-messages" class="flex-grow p-6 overflow-y-auto space-y-5 flex flex-col custom-scrollbar bg-[#fbfbfd]">
+                <div class="flex flex-col space-y-1.5 max-w-[85%] self-start">
+                    <div class="bg-[#f5f5f7] text-[#1d1d1f] px-5 py-4 rounded-2xl rounded-tl-none text-sm font-light leading-relaxed border border-[#e5e5e7]/30">
+                        <span class="font-medium">Hi Mandi 👋</span><br><br>Based on the architecture of the It'sAmor success ecosystem, I am fully synchronized to explore:<br>
+                        • 📈 <b>Growth opportunities</b> and corporate expansion vectors.<br>
+                        • 🎯 <b>Positioning improvements</b> within luxury and financial sectors.<br>
+                        • 💰 <b>Revenue expansion</b> through your tiered product funnel.<br>
+                        • ⚠️ <b>Potential business risks</b> or structural bottlenecks.<br><br>
+                        What area of interest shall we strategically explore first?
+                    </div>
+                    <span class="text-[10px] text-[#86868b] font-mono tracking-wide px-2 uppercase">It'sAmor Strategic Advisor</span>
+                </div>
+            </div>
+
+            <div id="ai-loading" class="hidden px-6 py-2 self-start flex items-center gap-2 max-w-[85%]">
+                <div class="bg-[#f5f5f7] px-4 py-3 rounded-2xl rounded-tl-none flex items-center gap-1.5 border border-[#e5e5e7]/20">
+                    <div class="w-1.5 h-1.5 bg-[#86868b] rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                    <div class="w-1.5 h-1.5 bg-[#86868b] rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                    <div class="w-1.5 h-1.5 bg-[#86868b] rounded-full animate-bounce"></div>
+                </div>
+            </div>
+
+            <div class="px-4 pt-3 bg-white flex flex-wrap gap-2 justify-start max-w-4xl mx-auto w-full overflow-x-auto custom-scrollbar">
+                <button class="chat-quick-reply bg-[#f5f5f7] hover:bg-[#1d1d1f] hover:text-white text-[#1d1d1f] text-xs font-normal px-4 py-2 rounded-full transition-all duration-200 shrink-0">📈 Hidden growth opportunities</button>
+                <button class="chat-quick-reply bg-[#f5f5f7] hover:bg-[#1d1d1f] hover:text-white text-[#1d1d1f] text-xs font-normal px-4 py-2 rounded-full transition-all duration-200 shrink-0">⚠️ Risks that could slow adoption</button>
+                <button class="chat-quick-reply bg-[#f5f5f7] hover:bg-[#1d1d1f] hover:text-white text-[#1d1d1f] text-xs font-normal px-4 py-2 rounded-full transition-all duration-200 shrink-0">🎯 Improve market positioning</button>
+                <button class="chat-quick-reply bg-[#f5f5f7] hover:bg-[#1d1d1f] hover:text-white text-[#1d1d1f] text-xs font-normal px-4 py-2 rounded-full transition-all duration-200 shrink-0">💰 New revenue opportunities</button>
+            </div>
+
+            <div class="p-4 bg-white border-t border-[#e5e5e7]/60">
+                <form id="chat-form" class="flex items-center gap-3 max-w-4xl mx-auto">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        autocomplete="off"
+                        placeholder="Inquire about corporate scaling, the 8 Steps Framework, or pipeline expansion..." 
+                        class="flex-grow bg-[#f5f5f7] text-[#1d1d1f] placeholder-[#86868b] text-sm font-light px-5 py-4 rounded-full focus:outline-none focus:ring-1 focus:ring-[#1d1d1f] border border-transparent focus:bg-white transition-all duration-300"
+                    >
+                    <button 
+                        type="submit" 
+                        id="send-btn"
+                        class="bg-[#1d1d1f] text-white p-4 rounded-full hover:bg-[#333336] active:scale-95 transition-all duration-300 flex items-center justify-center shrink-0 shadow-sm"
+                    >
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="w-full text-center py-6 border-t border-[#e5e5e7]/30 text-[11px] text-[#86868b] font-light uppercase tracking-widest">
+        Encrypted Analytics Framework &copy; 2026 It'sAmor Intelligence System.
+    </footer>
+
+    <script>
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const chatScreen = document.getElementById('chat-screen');
+        const startChatBtn = document.getElementById('start-chat-btn');
+        const resetSession = document.getElementById('reset-session');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const chatMessages = document.getElementById('chat-messages');
+        const aiLoading = document.getElementById('ai-loading');
+        const sendBtn = document.getElementById('send-btn');
+        const statusText = document.getElementById('status-text');
+
+        const BACKEND_API_URL = 'http://127.0.0.1:5000/api/chat';
+
+        // 1. Navigation Flow
+        function openChat() {
+            welcomeScreen.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                welcomeScreen.classList.add('hidden');
+                chatScreen.classList.remove('hidden');
+                chatScreen.classList.add('flex');
+                setTimeout(() => {
+                    chatScreen.classList.add('opacity-100');
+                    userInput.focus();
+                }, 50);
+            }, 400);
+        }
+
+        startChatBtn.addEventListener('click', openChat);
+
+        resetSession.addEventListener('click', () => {
+            chatScreen.classList.remove('opacity-100');
+            setTimeout(() => {
+                chatScreen.classList.remove('flex');
+                chatScreen.classList.add('hidden');
+                welcomeScreen.classList.remove('hidden');
+                setTimeout(() => {
+                    welcomeScreen.classList.remove('opacity-0', 'scale-95');
+                }, 50);
+            }, 400);
+        });
+
+        // 2. Interactive Prompts Mechanism
+        document.querySelectorAll('.suggested-prompt-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const promptText = btn.textContent.replace('🟢', '').trim();
+                openChat();
+                setTimeout(() => { executeStrategicInquiry(promptText); }, 500);
+            });
+        });
+
+        document.querySelectorAll('.chat-quick-reply').forEach(btn => {
+            btn.addEventListener('click', () => {
+                executeStrategicInquiry(btn.textContent.trim());
+            });
+        });
+
+        // 3. Safe Component Rendering (XSS Immune)
+        function appendMessage(text, isUser = false) {
+            const wrapper = document.createElement('div');
+            wrapper.className = `flex flex-col space-y-1 max-w-[85%] ${isUser ? 'self-end items-end' : 'self-start'}`;
+
+            const bubble = document.createElement('div');
+            if (isUser) {
+                bubble.className = "bg-[#1d1d1f] text-white px-5 py-3.5 rounded-2xl rounded-tl-none text-sm font-light leading-relaxed shadow-sm";
+                bubble.textContent = text;
+            } else {
+                bubble.className = "bg-[#f5f5f7] text-[#1d1d1f] px-5 py-3.5 rounded-2xl rounded-tr-none text-sm font-light leading-relaxed border border-[#e5e5e7]/40 whitespace-pre-line";
+                // Formatting bullet points safely for AI readability
+                bubble.innerHTML = text.replace(/\n/g, '<br>');
+            }
+
+            const meta = document.createElement('span');
+            meta.className = "text-[10px] text-[#86868b] font-mono tracking-wide uppercase px-2";
+            meta.textContent = isUser ? "Executive Client" : "It'sAmor Strategic Advisor";
+
+            wrapper.appendChild(bubble);
+            wrapper.appendChild(meta);
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+        }
+
+        // 4. API Request Execution
+        async function executeStrategicInquiry(message) {
+            if (!message) return;
+
+            appendMessage(message, true);
+            userInput.value = '';
+            
+            aiLoading.classList.remove('hidden');
+            chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+            statusText.textContent = "Processing strategic metrics...";
+
+            try {
+                const response = await fetch(BACKEND_API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                if (!response.ok) throw new Error('API Execution Interrupted.');
+
+                const data = await response.json();
+                aiLoading.classList.add('hidden');
+                appendMessage(data.reply, false);
+
+            } catch (error) {
+                console.error(error);
+                aiLoading.classList.add('hidden');
+                appendMessage("Error synchronizing with the secure corporate intelligence database. Please ensure Flask app is active on port 5000.", false);
+            } finally {
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                userInput.focus();
+                statusText.textContent = "Secure Network Active";
+            }
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            executeStrategicInquiry(userInput.value.trim());
+        });
+    </script>
+</body>
+</html>
